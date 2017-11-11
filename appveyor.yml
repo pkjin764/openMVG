@@ -15,15 +15,16 @@ configuration:
   - Debug
   - Release
 
-build_script:
+before_build:
   - cd c:\dev\openMVG
   - md openMVG_build
   - cd openMVG_build
   # Configure:
   # - ceres - SCHUR_SPECIALIZATIONS set to OFF to speed up build time
   - cmake -DOpenMVG_BUILD_EXAMPLES=OFF -DOpenMVG_BUILD_TESTS=ON -DSCHUR_SPECIALIZATIONS=OFF ../src/
-  # Build:
-  - cmake --build .
+
+build_script:
+  project: c:\dev\openMVG\openMVG.sln
 
 test_script:
   - ctest -C %configuration% -V
