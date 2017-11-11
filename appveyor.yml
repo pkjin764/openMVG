@@ -10,13 +10,31 @@ environment:
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
 
+environment:
+  matrix:
+  # Visual Studio 2015 Win32
+  - GENERATOR: Visual Studio 14 2015
+    PLATFORM: Win32
+    APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+
+  # Visual Studio 2015 x64
+  - GENERATOR: Visual Studio 14 2015 Win64
+    PLATFORM: x64
+    APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+
+  # Visual Studio 2017 Win32
+    - GENERATOR: Visual Studio 15 2017
+      PLATFORM: Win32
+      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+
+  # Visual Studio 2017 x64
+  - GENERATOR: Visual Studio 15 2017 Win64
+    PLATFORM: x64
+    APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+
 configuration:
   - Debug
   - Release
-
-platform:
-  - Win32
-  - x64
 
 before_build:
   - cd c:\dev\openMVG
@@ -24,7 +42,7 @@ before_build:
   - cd openMVG_build
   # Configure:
   # - ceres - SCHUR_SPECIALIZATIONS is set to OFF to speed up the build time
-  - cmake -DCMAKE_BUILD_TYPE=%configuration% -DOpenMVG_BUILD_EXAMPLES=OFF -DOpenMVG_BUILD_TESTS=ON -DSCHUR_SPECIALIZATIONS=OFF ../src/
+  - cmake -G"%GENERATOR%" -DCMAKE_BUILD_TYPE=%configuration% -DOpenMVG_BUILD_EXAMPLES=OFF -DOpenMVG_BUILD_TESTS=ON -DSCHUR_SPECIALIZATIONS=OFF ../src/
 
 build:
   project: c:\dev\openMVG\openMVG_Build\openMVG.sln
