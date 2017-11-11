@@ -24,9 +24,9 @@ before_build:
   - cmake -DOpenMVG_BUILD_EXAMPLES=OFF -DOpenMVG_BUILD_TESTS=ON -DSCHUR_SPECIALIZATIONS=OFF ../src/
 
 build:
+  project: c:\dev\openMVG_Build\openMVG.sln
   parallel: true
   verbosity: minimal
-  - cmake --build c:\dev\openMVG_Build --config %configuration%
 
 test_script:
   - ctest -C %configuration% -V
