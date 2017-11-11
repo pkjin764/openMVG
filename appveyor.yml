@@ -24,7 +24,7 @@ before_build:
   - cmake -DOpenMVG_BUILD_EXAMPLES=OFF -DOpenMVG_BUILD_TESTS=ON -DSCHUR_SPECIALIZATIONS=OFF ../src/
 
 build_script:
-  project: c:\dev\openMVG\openMVG.sln
+  project: c:\dev\openMVG\openMVG_build\openMVG.sln
 
 test_script:
   - ctest -C %configuration% -V
