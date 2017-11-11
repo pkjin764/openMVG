@@ -23,8 +23,8 @@ before_build:
   # - ceres - SCHUR_SPECIALIZATIONS set to OFF to speed up build time
   - cmake -DOpenMVG_BUILD_EXAMPLES=OFF -DOpenMVG_BUILD_TESTS=ON -DSCHUR_SPECIALIZATIONS=OFF ../src/
 
-build_script:
-  project: c:\dev\openMVG\openMVG_build\openMVG.sln
+build:
+  - cmake --build c:\dev\openMVG_Build --config %configuration% 
 
 test_script:
   - ctest -C %configuration% -V
