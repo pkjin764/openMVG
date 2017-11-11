@@ -7,8 +7,8 @@ install:
 
 environment:
   matrix:
-    - GENERATOR: "Visual Studio 14 2015 Win64"
-    - GENERATOR: "Visual Studio 14 2015"
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
 
 # build configuration, i.e. Debug, Release, etc.
 configuration:
@@ -20,10 +20,10 @@ build_script:
   - md openMVG_build
   - cd openMVG_build
   # Configure:
-  # - ceres - SCHUR_SPECIALIZATIONS set to OFF to speed up build time 
-  - cmake -G"%GENERATOR%" -DCMAKE_BUILD_TYPE=%configuration% -DOpenMVG_BUILD_EXAMPLES=OFF -DOpenMVG_BUILD_TESTS=ON -DSCHUR_SPECIALIZATIONS=OFF ../src/
+  # - ceres - SCHUR_SPECIALIZATIONS set to OFF to speed up build time
+  - cmake -DOpenMVG_BUILD_EXAMPLES=OFF -DOpenMVG_BUILD_TESTS=ON -DSCHUR_SPECIALIZATIONS=OFF ../src/
   # Build:
-  - cmake --build . --config %configuration% 
+  - cmake --build .
 
 test_script:
   - ctest -C %configuration% -V
@@ -31,4 +31,3 @@ test_script:
 build:
   parallel: true
   verbosity: minimal
-
