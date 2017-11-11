@@ -21,10 +21,10 @@ before_build:
   - cd openMVG_build
   # Configure:
   # - ceres - SCHUR_SPECIALIZATIONS set to OFF to speed up build time
-  - cmake -DOpenMVG_BUILD_EXAMPLES=OFF -DOpenMVG_BUILD_TESTS=ON -DSCHUR_SPECIALIZATIONS=OFF ../src/
+  - cmake -DCMAKE_BUILD_TYPE=%configuration% -DOpenMVG_BUILD_EXAMPLES=OFF -DOpenMVG_BUILD_TESTS=ON -DSCHUR_SPECIALIZATIONS=OFF ../src/
 
 build:
-  project: c:\dev\openMVG_Build\openMVG.sln
+  project: c:\dev\openMVG\openMVG_Build\openMVG.sln
   parallel: true
   verbosity: minimal
 
